@@ -29,12 +29,8 @@ jobs:
       - name: Cache Bazel
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/bazel
-            bazel-out
-          key: ${{ runner.os }}-bazel-${{ hashFiles('**/WORKSPACE.bazel') }}
-          restore-keys: |
-            ${{ runner.os }}-bazel-
+          path: ~/.cache/bazel
+          key: bazel
 
       # Build all targets
       - name: Build all targets
