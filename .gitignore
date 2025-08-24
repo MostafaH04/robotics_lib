@@ -12,3 +12,5 @@ target/
 __pycache__/
 *.pyc
 .venv/
+.vscode/
+TODO
