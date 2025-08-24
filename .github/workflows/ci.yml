@@ -24,8 +24,6 @@ jobs:
       # Install Bazel
       - name: Install Bazel
         uses: bazelbuild/setup-bazelisk@v3 
-        with:
-          bazelisk-version: 7.2.1  
           
       # Set up cache
       - name: Cache Bazel
