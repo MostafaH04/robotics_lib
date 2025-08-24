@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up g++
+      - name: Install g++
+        run: |
+          sudo apt update
+          sudo apt install -y g++-12
+          g++ --version
+
+      # Install Bazel
+      - name: Install Bazel
+        uses: bazelbuild/setup-bazel@v5
+        with:
+          bazel-version: 6.6.1   # or latest stable
+
+      # Set up cache
+      - name: Cache Bazel
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/bazel
+            bazel-out
+          key: ${{ runner.os }}-bazel-${{ hashFiles('**/WORKSPACE.bazel') }}
+          restore-keys: |
+            ${{ runner.os }}-bazel-
+
+      # Build all targets
+      - name: Build all targets
+        run: bazel build //... --cxxopt=-std=c++17
+
+      # Run all tests
+      - name: Run all tests
+        run: bazel test //... --test_output=errors --cxxopt=-std=c++17
+
