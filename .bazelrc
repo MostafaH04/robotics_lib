@@ -1,5 +1,10 @@
+# Use C++17 everywhere
 build --cxxopt=-std=c++17
 build --host_cxxopt=-std=c++17
+
+# Compilation modes
 build:dbg --compilation_mode=dbg
 build:opt --compilation_mode=opt
+
+# Show full test output
 test --test_output=errors
