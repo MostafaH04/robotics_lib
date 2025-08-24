@@ -1,0 +1,5 @@
+build --cxxopt=-std=c++20
+build --host_cxxopt=-std=c++20
+build:dbg --compilation_mode=dbg
+build:opt --compilation_mode=opt
+test --test_output=errors

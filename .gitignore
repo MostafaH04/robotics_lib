@@ -1,0 +1,14 @@
+bazel-*
+/bazel-*
+/bazel-bin
+/bazel-out
+/bazel-testlogs
+**/*.o
+**/*.a
+**/*.so
+target/
+**/Cargo.lock
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
